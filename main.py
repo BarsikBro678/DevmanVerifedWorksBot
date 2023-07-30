@@ -11,18 +11,21 @@ def get_verifed_work(devman_api_key, timestamp=None):
 	headers = {
 		"Authorization": f"Token {devman_api_key}"
 	}
-	try:
-		response = requests.get(url, headers=headers)
-		response.raise_for_status()
-		return response.json()
-	except requests.exceptions.ReadTimeout or ConnectionError:
-		return get_my_verifed_work(devman_api_key)
+	response = requests.get(url, headers=headers)
+	response.raise_for_status()
+	return response.json()
 
 
 def telegram_bot(bot, chat_id, devman_api_key):
 	timestamp = None
 	while True:
-		work = get_verifed_work(devman_api_key, timestamp=timestamp)
+		while True:
+			try:
+				work = get_verifed_work(devman_api_key, timestamp=timestamp)
+				break
+			except requests.exceptions.ReadTimeout or ConnectionError:
+				pass
+			
 		if work["status"] == "timeout":
 			timestamp = my_work["timestamp_to_request"]
 		else:
