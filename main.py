@@ -22,12 +22,12 @@ def get_verifed_work(devman_api_key, timestamp=None):
 def telegram_bot(bot, chat_id, devman_api_key):
 	timestamp = None
 	while True:
-		my_work = get_verifed_work(devman_api_key, timestamp=timestamp)
-		if my_work["status"] == "timeout":
+		work = get_verifed_work(devman_api_key, timestamp=timestamp)
+		if work["status"] == "timeout":
 			timestamp = my_work["timestamp_to_request"]
 		else:
 			timestamp = None
-			if my_work["new_attempts"][0]["is_negative"]:
+			if work["new_attempts"][0]["is_negative"]:
 				bot.send_message(chat_id=chat_id, text=f"Преподаватель оценил вашу работу <<{my_work['new_attempts'][0]['lesson_title']}>>!	                                                                К сожалению, в работе нашлись ошибки.")
 			else:
 				bot.send_message(chat_id=chat_id, text=f"Преподаватель оценил вашу работу <<{my_work['new_attempts'][0]['lesson_title']}>>!	                                                                Преподавателю все понравилось, можно приступать к следуещему уроку!")
