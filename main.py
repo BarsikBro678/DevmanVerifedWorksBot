@@ -37,7 +37,7 @@ def telegram_bot(bot, chat_id, devman_api_key):
 
 	
 def main():
-    chat_id = os.environ["MY_CHAT_ID"]
+    chat_id = os.environ["CHAT_ID"]
     telegram_bot_key = os.environ["TELEGRAM_BOT_KEY"]
     devman_api_key = os.environ["DEVMAN_API_KEY"]
     bot = telegram.Bot(token=telegram_bot_key)
