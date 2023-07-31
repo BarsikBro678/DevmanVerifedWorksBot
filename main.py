@@ -28,9 +28,13 @@ def telegram_bot(bot, chat_id, devman_api_key):
 	    else:
 		timestamp = None
 		if work["new_attempts"][0]["is_negative"]:
-		    bot.send_message(chat_id=chat_id, text=f"Преподаватель оценил вашу работу <<{work['new_attempts'][0]['lesson_title']}>>!	                                                                К сожалению, в работе нашлись ошибки.")
+		    bot.send_message(chat_id=chat_id, text=f"Преподаватель оценил вашу работу 
+      <<{work['new_attempts'][0]['lesson_title']}>>!	                       
+      К сожалению, в работе нашлись ошибки.")
 		else:
-		    bot.send_message(chat_id=chat_id, text=f"Преподаватель оценил вашу работу <<{work['new_attempts'][0]['lesson_title']}>>!	                                                                Преподавателю все понравилось, можно приступать к следуещему уроку!")
+		    bot.send_message(chat_id=chat_id, text=f"Преподаватель оценил вашу работу 
+      <<{work['new_attempts'][0]['lesson_title']}>>!	                       
+      Преподавателю все понравилось, можно приступать к следуещему уроку!")
 
 	except requests.exceptions.ReadTimeout or ConnectionError:
 	    pass
