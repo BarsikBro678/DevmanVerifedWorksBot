@@ -11,7 +11,7 @@
 ```
 DEVMAN_API_KEY=ваш Devman Api Key
 TELEGRAM_BOT_KEY=ваш токен бота
-MY_CHAT_ID=ваш ID в Telegram(как его узнать написано в начале)
+CHAT_ID=ваш ID в Telegram(как его узнать написано в начале)
 ```
 
 Python3 должен быть уже установлен. Затем используйте pip (или pip3, есть конфликт с Python2) для установки зависимостей:
