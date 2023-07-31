@@ -1,4 +1,5 @@
 import os
+from time import sleep
 
 import requests
 import telegram
@@ -36,10 +37,13 @@ def telegram_bot(bot, chat_id, devman_api_key):
       <<{work['new_attempts'][0]['lesson_title']}>>!	                       
       Преподавателю все понравилось, можно приступать к следуещему уроку!")
 
-	except requests.exceptions.ReadTimeout or ConnectionError:
+	except requests.exceptions.ReadTimeout:
 	    pass
 
-	
+	except ConnectionError:
+	    sleep(2)
+
+
 def main():
     chat_id = os.environ["CHAT_ID"]
     telegram_bot_key = os.environ["TELEGRAM_BOT_KEY"]
